@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewData["Title"] = "List Entry";
+}
+
+@model listEntry;
+
+
+<br />
+<br />
+<br />
+<br />
+
+<h1>To-Do List Entry</h1>
+
+<form method="post">
+
+    <!--Provides validation of fields-->
+    <!--div asp-validation-summary="All"></div>-->
+
+
+
+    <label asp-for="Task">Task:</label>
+    <input type="text" id="task" asp-for="Task" />
+
+    <br />
+
+
+
+    <label asp-for="DueDate">Due Date:</label>
+    <input type="date" id="date" asp-for="DueDate" />
+
+    <br />
+
+
+    <label asp-for="Quadrant">Quadrant:</label>
+    <input type="number" id="quad" asp-for="Quadrant" /> 
+
+    <br />
+
+    <label asp-for="CategoryID">Category:</label>
+    <select asp-for="CategoryID">
+        <option value="">Select a Category</option>
+        <!--foreach loop calls the Category model-->
+        @foreach (Category c in ViewBag.Categories)
+        {
+            //loop then goes through each CategoryName in Category, the ID is connected to the selected CategoryName through the "value" syntax.
+            <option value="@c.CategoryID">@c.CategoryName</option>
+        }
+
+    </select>
+    
+    <br />
+
+    <!--True/False options for Completed field-->
+    <label asp-for="Completed">Edited:</label>
+    <select class="form-control" asp-for="Completed" id="completed">
+        <option>Completed?</option>
+        <option>True</option>
+        <option>False</option>
+    </select>
+
+    <br />
+
+
+    <input type="submit" value="Enter Task" /> <br />
+
+</form>

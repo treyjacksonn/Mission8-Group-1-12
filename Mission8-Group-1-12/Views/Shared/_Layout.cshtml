@@ -1,0 +1,32 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <!--Dynamically calls variable called title referenced in the razor of all Views pages to determine title per page -->
+    <title>@ViewData["Title"]</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="icon" href="https://www.shutterstock.com/shutterstock/photos/1147101026/display_1500/stock-vector-outstanding-professional-elegant-trendy-awesome-artistic-black-and-white-color-tj-jt-initial-based-1147101026.jpg" />"" /> <!--icon for tab-->
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+        <!--bootstrap to create header-->
+        <div class="container">
+            <a class="navbar-brand" href="#page-top">Movie Collection</a>
+            <a asp-controller="Home" asp-action="Index">Home</a>
+            <a asp-controller="Home" asp-action="listEntry">Enter Task</a>
+
+        </div>
+    </nav>
+    <div>
+        @RenderBody()
+    </div>
+
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
