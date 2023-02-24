@@ -41,11 +41,7 @@ namespace Mission8_Group_1_12.Models
                     CategoryID = 1,
                     Completed = false
 
-                }
-
-                );
-
-
+                });
         }
     }
 }

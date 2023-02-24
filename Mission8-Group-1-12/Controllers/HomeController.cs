@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Mission8_Group_1_12.Models;
 using System;
@@ -40,6 +41,19 @@ namespace Mission8_Group_1_12.Controllers
             ListContext.SaveChanges();
             return View(le);
         }
+
+        //CUrrently has a bug
+
+        //[HttpGet]
+        //public IActionResult ToDoList()
+        //{
+        //    var listEntries = listEntryContext.listEntry
+        //        .Include(l => l.Category)
+        //        .OrderBy(l => l.DueDate)
+        //        .ToList();
+
+        //    return View(listEntries);
+        //}
 
         public IActionResult ToDoList()
         {
