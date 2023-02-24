@@ -41,6 +41,14 @@ namespace Mission8_Group_1_12.Controllers
             return View(le);
         }
 
+        public IActionResult ToDoList()
+        {
+            return View();
+        }
 
+        public IActionResult Quadrant()
+        {
+            return View();
+        }
     }
 }

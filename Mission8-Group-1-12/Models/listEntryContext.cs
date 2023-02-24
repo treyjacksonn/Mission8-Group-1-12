@@ -39,7 +39,7 @@ namespace Mission8_Group_1_12.Models
                     DueDate = "2-22-2023",
                     Quadrant = 1,
                     CategoryID = 1,
-                    Completed = "False"
+                    Completed = false
 
                 }
 

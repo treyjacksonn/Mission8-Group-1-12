@@ -23,7 +23,7 @@ namespace Mission8_Group_1_12.Models
 
         public int CategoryID { get; set; }
 
-        public string Completed { get; set; }
+        public bool Completed { get; set; }
 
 
         //Building foreign key relationship
