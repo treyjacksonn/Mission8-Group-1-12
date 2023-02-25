@@ -21,12 +21,11 @@ namespace Mission8_Group_1_12.Models
         [Range (1,4)]
         public int Quadrant { get; set; }
 
-        public int CategoryID { get; set; }
-
         public bool Completed { get; set; }
 
 
         //Building foreign key relationship
+        public int CategoryID { get; set; }
         public Category Category { get; set; }
 
     }
