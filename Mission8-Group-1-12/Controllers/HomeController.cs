@@ -49,18 +49,6 @@ namespace Mission8_Group_1_12.Controllers
             return View("ToDoList", allTasks);
         }
 
-        //CUrrently has a bug
-
-        //[HttpGet]
-        //public IActionResult ToDoList()
-        //{
-        //    var listEntries = listEntryContext.listEntry
-        //        .Include(l => l.Category)
-        //        .OrderBy(l => l.DueDate)
-        //        .ToList();
-
-        //    return View(listEntries);
-        //}
         [HttpGet]
         public IActionResult ToDoList()
         {
@@ -110,7 +98,13 @@ namespace Mission8_Group_1_12.Controllers
 
         public IActionResult Quadrant()
         {
-            return View();
+            var allTasks = ListContext.listEntry
+                .Where(x => x.Completed == false)
+                .OrderBy(x => x.DueDate)
+                .Include(x => x.Category)
+                .ToList();
+
+            return View(allTasks);
         }
     }
 }

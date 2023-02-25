@@ -8,8 +8,8 @@ using Mission8_Group_1_12.Models;
 namespace Mission8_Group_1_12.Migrations
 {
     [DbContext(typeof(listEntryContext))]
-    [Migration("20230225001947_Initial")]
-    partial class Initial
+    [Migration("20230225033559_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
