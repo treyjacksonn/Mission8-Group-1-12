@@ -31,7 +31,8 @@ namespace Mission8_Group_1_12.Controllers
         public IActionResult listEntry()
         {
             ViewBag.Categories = ListContext.Categories.ToList();
-            return View();
+
+            return View("listEntry", new listEntry());
         }
 
         [HttpPost]
@@ -39,7 +40,13 @@ namespace Mission8_Group_1_12.Controllers
         {
             ListContext.Add(le);
             ListContext.SaveChanges();
-            return View(le);
+            ViewBag.Categories = ListContext.Categories.ToList();
+            var allTasks = ListContext.listEntry
+                .Where(x => x.Completed == false)
+                .OrderBy(x => x.DueDate)
+                .Include(x => x.Category)
+                .ToList();
+            return View("ToDoList", allTasks);
         }
 
         //CUrrently has a bug
@@ -54,10 +61,51 @@ namespace Mission8_Group_1_12.Controllers
 
         //    return View(listEntries);
         //}
-
+        [HttpGet]
         public IActionResult ToDoList()
         {
-            return View();
+            var allTasks = ListContext.listEntry
+                .Where(x => x.Completed == false)
+                .OrderBy(x => x.DueDate)
+                .Include(x => x.Category)
+                .ToList();
+
+            return View(allTasks);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int taskId)
+        {
+            ViewBag.Categories = ListContext.Categories.ToList();
+
+            var task = ListContext.listEntry.Single(x => x.TaskID == taskId);
+            return View("listEntry", task);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(listEntry updatedEntry)
+        {
+            ListContext.Update(updatedEntry);
+            ListContext.SaveChanges();
+            //ViewBag.Categories = ListContext.Categories.ToList();
+
+            return RedirectToAction("ToDoList");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int taskId)
+        {
+            var task = ListContext.listEntry.Single(x => x.TaskID == taskId);
+
+            return View(task);
+        }
+        [HttpPost]
+        public IActionResult Delete(listEntry le)
+        {
+            ListContext.listEntry.Remove(le);
+            ListContext.SaveChanges();
+
+            return RedirectToAction("ToDoList");
         }
 
         public IActionResult Quadrant()

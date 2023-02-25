@@ -58,7 +58,7 @@ namespace Mission8_Group_1_12
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{TaskId?}");
             });
         }
     }

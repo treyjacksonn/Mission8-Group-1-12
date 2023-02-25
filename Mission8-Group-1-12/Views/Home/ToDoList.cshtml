@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "To Do List";
 }
-
+@model List<listEntry>
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
@@ -12,4 +12,21 @@
             <td>Completed?</td>
         </tr>
     </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.Task</td>
+                <td>@x.DueDate</td>
+                <td>@x.Quadrant</td>
+                <td>@x.Category.CategoryName</td>
+                <td>@x.Completed</td>
+
+                <!-- these edit and delete buttons appear on every row and will pass the entry
+                    id that is connected with the row to edit or delete any entry-->
+                <td><a asp-controller="Home" asp-action="Edit" asp-route-TaskId="@x.TaskID">Edit</a></td>
+                <td><a asp-controller="Home" asp-action="Delete" asp-route-TaskId="@x.TaskID">Delete</a></td>
+            </tr>
+        }
+    </tbody>
 </table>
