@@ -4,43 +4,54 @@
 
 @model List<listEntry>
 
-<h1>The 4 Quadrants of Importance</h1>
-
+<h1 style="text-align: center">The 4 Quadrants of Importance</h1>
+<h3 style="text-align: center">Based on Stephen Covey's Time Management Matrix</h3>
+<br />
+@*The beginning of the table*@
 <table style="width: 100%; height: 100%;">
+    @*First Row that contains the Headers for the quadrant's first two sections.*@
     <tr>
         <td style="background-color: lightblue; text-align: center; font-size: 24px; font-weight: bold;">
-            Quadrant 1 (Urgent and Important)
+            Quadrant 1
+            (Urgent and Important)
         </td>
         <td style="background-color: lightgreen; text-align: center; font-size: 24px; font-weight: bold;">
-            Quadrant 2 (Not Urgent but Important)
+            Quadrant 2
+            (Not Urgent but Important)
         </td>
     </tr>
-
+    @*The next rows that populate the top two quadrants*@
     @foreach (var x in Model)
     {
         <tr>
+            @*Determines if Task belongs in Top Quadrants*@
             @if (x.Quadrant == 1 | x.Quadrant == 2)
             {
+                //Determines if task belongs in Quad 1
                 if (x.Quadrant == 1)
                 {
-                    <td>@x.Task</td>
+                    <td style="text-align: center">
+                        @x.Task
+                        <a style="text-align: center;" asp-controller="Home" asp-action="Edit" asp-route-TaskId="@x.TaskID">Edit</a>
+                        <a asp-controller="Home" asp-action="Delete" asp-route-TaskId="@x.TaskID">Delete</a>
+                    </td>
                     <td></td>
                 }
 
-
+                //Determines if task belongs in Quad 2
                 if (x.Quadrant == 2)
                 {
                     <td></td>
-                    <td>@x.Task</td>
+                    <td style="text-align: center">
+                        @x.Task
+                        <a style="text-align: center;" asp-controller="Home" asp-action="Edit" asp-route-TaskId="@x.TaskID">Edit</a>
+                        <a asp-controller="Home" asp-action="Delete" asp-route-TaskId="@x.TaskID">Delete</a>
+                    </td>
                 }
             }
         </tr>
     }
-
-
-
-
-
+    @*Next set of Header rows*@
     <tr>
         <td style="background-color: lightpink; text-align: center; font-size: 24px; font-weight: bold;">
             Quadrant 3 (Urgent but Not Important)
@@ -51,24 +62,33 @@
     </tr>
     @foreach (var x in Model)
     {
-        <tr>
-            @if (x.Quadrant == 3 | x.Quadrant == 4)
-            {
-                if (x.Quadrant == 3)
-                {
-                    <td>@x.Task</td>
-                    <td></td>
-                }
-
-
-                if (x.Quadrant == 4)
-                {
-                    <td></td>
-                    <td>@x.Task</td>
-                }
-            }
-        </tr>
+<tr>
+    @*Determines if Task belongs in Bottom Quadrants*@
+    @if (x.Quadrant == 3 | x.Quadrant == 4)
+    {
+        //Determines if task belongs in Quad 3
+        if (x.Quadrant == 3)
+        {
+            <td style="text-align: center">
+                @x.Task
+                <a style="text-align: center;" asp-controller="Home" asp-action="Edit" asp-route-TaskId="@x.TaskID">Edit</a>
+                <a asp-controller="Home" asp-action="Delete" asp-route-TaskId="@x.TaskID">Delete</a>
+            </td>
+            <td></td>
+        }
+        //Determines if task belongs in Quad 4
+        if (x.Quadrant == 4)
+        {
+            <td></td>
+            <td style="text-align: center">
+                @x.Task
+                <a style="text-align: center;" asp-controller="Home" asp-action="Edit" asp-route-TaskId="@x.TaskID">Edit</a>
+                <a asp-controller="Home" asp-action="Delete" asp-route-TaskId="@x.TaskID">Delete</a>
+            </td>
+        }
     }
+</tr>
+     }
 
 </table>
 
